@@ -14,7 +14,7 @@ const getHospitals = async (
     res.status(200).json(hospitals)
   } catch (error) {
     console.error(error)
-    next('Error fetching hospitals')
+    next(new Error('Error fetching hospitals'))
   }
 }
 
@@ -32,7 +32,7 @@ const addHospital = async (req: Request, res: Response, next: NextFunction) => {
     res.status(201).json(newHospital)
   } catch (error) {
     console.error(error)
-    next('Error creating hospital')
+    next(new Error('Error creating hospital'))
   }
 }
 
