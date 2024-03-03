@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { IUser, User } from '../models/UserModel'
 import bcrypt from 'bcrypt'
+import log from '../utils/logger'
 
 const getDonors = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -10,7 +11,7 @@ const getDonors = async (req: Request, res: Response, next: NextFunction) => {
     )
     res.status(200).json(users)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error fetching donors'))
   }
 }
@@ -40,7 +41,7 @@ const addUser = async (req: Request, res: Response, next: NextFunction) => {
     const { password: pwd, ...newUserData } = newUser.toObject()
     res.status(201).json(newUserData)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error creating user'))
   }
 }
@@ -61,7 +62,7 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     const { password, ...updatedUserData } = updatedUser.toObject()
     res.status(200).json(updatedUserData)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error updating user'))
   }
 }

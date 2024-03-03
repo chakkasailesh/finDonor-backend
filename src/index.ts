@@ -4,6 +4,7 @@ import connect from './db'
 import userRouter from './routes/UserRoutes'
 import hospitalRouter from './routes/HospitalRoutes'
 import donationRouter from './routes/DonationRoutes'
+import log from './utils/logger'
 
 const app = express()
 const port = process.env.PORT
@@ -24,6 +25,6 @@ app.listen(port, async () => {
   try {
     await connect()
   } catch (err) {
-    console.error('Error connecting to MongoDB:', err)
+    log.error('Error connecting to MongoDB:', err)
   }
 })

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { Hospital, IHospital } from '../models/HospitalModel'
+import log from '../utils/logger'
 
 const getHospitals = async (
   req: Request,
@@ -13,7 +14,7 @@ const getHospitals = async (
     )
     res.status(200).json(hospitals)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error fetching hospitals'))
   }
 }
@@ -31,7 +32,7 @@ const addHospital = async (req: Request, res: Response, next: NextFunction) => {
     const newHospital = await hospital.save()
     res.status(201).json(newHospital)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error creating hospital'))
   }
 }

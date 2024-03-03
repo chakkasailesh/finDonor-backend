@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import 'dotenv/config'
+import log from './utils/logger'
 
 const connect = async () => {
   if (process.env.DB_URI) {
@@ -7,7 +8,7 @@ const connect = async () => {
       await mongoose.connect(process.env.DB_URI)
       console.log('Connected to MongoDB')
     } catch (err) {
-      console.error('Error connecting to MongoDB:', err)
+      log.error('Error connecting to MongoDB:', err)
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { Donation, IDonation } from '../models/DonationModel'
+import log from '../utils/logger'
 
 const getDonations = async (
   req: Request,
@@ -19,7 +20,7 @@ const getDonations = async (
     }))
     res.status(200).json(result)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error fetching donations'))
   }
 }
@@ -31,7 +32,7 @@ const addDonation = async (req: Request, res: Response, next: NextFunction) => {
     const newDonation = await donation.save()
     res.status(201).json(newDonation)
   } catch (error) {
-    console.error(error)
+    log.error(error)
     next(new Error('Error adding donation'))
   }
 }
