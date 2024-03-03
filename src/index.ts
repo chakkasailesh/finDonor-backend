@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express'
 import 'dotenv/config'
 import connect from './db'
 import userRouter from './routes/UserRoutes'
+import hospitalRouter from './routes/HospitalRoutes'
 
 const app = express()
 const port = process.env.PORT
@@ -9,6 +10,7 @@ const port = process.env.PORT
 app.use(express.json())
 
 app.use('/users', userRouter)
+app.use('/hospitals', hospitalRouter)
 
 // Error handler middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

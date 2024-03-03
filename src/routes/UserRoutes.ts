@@ -1,4 +1,4 @@
-import express, { Router, Request, Response, NextFunction } from 'express'
+import express, { Router } from 'express'
 import { getDonors, addUser, updateUser } from '../controllers/UserController'
 
 const router: Router = express.Router()
